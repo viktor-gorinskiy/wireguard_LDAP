@@ -32,7 +32,7 @@ ios_logo = 'images/apple.png'
 windows_logo = 'images/windows.png'
 macOS_logo = ios_logo
 
-# Ссылки на логотипы для красивого отображения в письме
+# Ссылки на клиентов для "всех" платформ
 href_ios = "https://itunes.apple.com/us/app/wireguard/id1441195209?ls=1&mt=8"
 href_android = "https://play.google.com/store/apps/details?id=com.wireguard.android"
 href_macOS = "https://itunes.apple.com/us/app/wireguard/id1451685025?ls=1&mt=12"

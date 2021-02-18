@@ -1,0 +1,46 @@
+
+# Настройки для подключения к active directory server, не проверялось но с LDAP так-же должно работать
+ldap_url = 'ldap://ldap.example.com:389'
+ldap_bind_user = 'admin_vpn'
+ldap_bind_pass = 'long_password'
+ldap_basedn = 'dc=domain,dc=loc'
+ldap_filter = '(&(objectCategory=person)(objectClass=user)(!(UserAccountControl:1.2.840.113556.1.4.803:=2))(memberOf=CN=vpn_group,ou=company,DC=domain,DC=loc))'
+ldap_attrlist =  ["sAMAccountName", "mail"] # Атрибуты которые нам нужны для того, чтоб знать имя пользователя и адрес куда отправлять настройки.
+
+patch_wireguard = '/etc/wireguard'              # Путь до папки с wireguard
+peers_file_name = '/etc/wireguard/peers.txt'    # Файл, где будут храниться пиры, так-же их статусы
+
+# Так как пока мы не умеем парсить конфиг файл, то продублируем настроки сервера тут:
+server = 'wg-server'    # Название серера wireguard, вдруг у Вас их больше одного
+DNS = '10.10.40.10'
+peer_ip_mask = 32
+AllowedIPs = '10.10.0.0/18, 192.168.0.0/16'
+Endpoint = 'vpn.domain.com:51810'
+publicKey = 'PTC2nnHUAnGvgwwdklbyWDR4Kqb4SbFg19R+cyxur0s=' # скоприровать ключ из конфига сервера
+
+# Всё что необходимо для отправки письма
+smtp_port = 465
+smtp_server = "10.10.40.113"
+smtp_login = "admin@domain.com"
+smtp_password = "smtp_long_password"
+smtp_Subject = "VPN_wireguard"
+smtp_sender_email = smtp_login
+smtp_template_html = 'template_email.html'
+
+android_logo = 'images/android.png'
+ios_logo = 'images/apple.png'
+windows_logo = 'images/windows.png'
+macOS_logo = ios_logo
+
+# Ссылки на логотипы для красивого отображения в письме
+href_ios = "https://itunes.apple.com/us/app/wireguard/id1441195209?ls=1&mt=8"
+href_android = "https://play.google.com/store/apps/details?id=com.wireguard.android"
+href_macOS = "https://itunes.apple.com/us/app/wireguard/id1451685025?ls=1&mt=12"
+href_windows = "https://download.wireguard.com/windows-client/wireguard-installer.exe"
+
+how_to_src = 'https://linc_to_helpdesk' # например телеграмм группа
+
+send_email_message = True                       # Отправлять сообщения на почту (конечно да, ради этого всё и затевалось!)
+update_status_in_file = True                    # Сохранять в файле с ключами статус пиров
+gen_peer_config_and_qr_files = False            # Сохранять локальную копию конфигфайлов для пиров (может понадобиться, если не работает отправка почты)
+peer_folder_config = '/etc/wireguard/peers'     # Папка, где будем хранить конфиги пиров

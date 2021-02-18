@@ -1,0 +1,11 @@
+[Unit]
+Description=WireGuard LDAP service
+After=multi-user.target
+[Service]
+WorkingDirectory=/opt/wg
+User=root
+Type=idle
+ExecStart=/usr/bin/python3 /opt/wg/main.py &> /dev/null
+#Restart=always
+[Install]
+WantedBy=multi-user.target

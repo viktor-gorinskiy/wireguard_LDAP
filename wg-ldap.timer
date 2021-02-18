@@ -1,0 +1,11 @@
+[Unit]
+Description=Run foo weekly and on boot
+
+[Timer]
+Unit=wg-ldap.service
+OnCalendar=*-*-* *:*:00
+
+#OnUnitActiveSec=5min
+
+[Install]
+WantedBy=timers.target

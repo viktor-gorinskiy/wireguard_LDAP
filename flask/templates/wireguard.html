@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<table>
+    <thead>
+        <tr>
+            <th>peer_name</th>
+<!--            <th>peer</th>-->
+            <th>ip</th>
+            <th>endpoint</th>
+            <th>handshake</th>
+
+        </tr>
+    </thead>
+    {% for peer in peers %}
+    <tr>
+        <td>{{ peer.peer_name }}</td>
+<!--        <td >{{ peer.peer }}</td>-->
+        <td >{{ peer.allowed_ips }}</td>
+        <td>{{ peer.endpoint }}</td>
+        <td>{{ peer.handshake }}</td>
+    </tr>
+{% endfor %}
+</table>
+
+{% endblock %}
